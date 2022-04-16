@@ -8,6 +8,7 @@ const ipfs = create({
 const run = async () => {
     const res = await ipfs.files.stat('/');
     console.log(res);
+    return res;
 };
 
 const addFile = async (file: IMulterFile | undefined) => {
@@ -16,6 +17,7 @@ const addFile = async (file: IMulterFile | undefined) => {
             create: true,
         });
     }
+    run();
 };
 
 export { run, addFile };
