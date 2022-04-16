@@ -4,12 +4,14 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "start": "nodemon src/index.ts",
+        "dev": "nodemon src/index.ts",
+        "start": "ts-node index.ts",
         "build": "tsc src/index.ts"
     },
     "license": "MIT",
     "devDependencies": {
         "@types/express": "^4.17.13",
+        "@types/multer": "^1.4.7",
         "@types/node": "^17.0.24",
         "@typescript-eslint/eslint-plugin": "^5.19.0",
         "@typescript-eslint/parser": "^5.19.0",
@@ -25,7 +27,9 @@
     },
     "dependencies": {
         "bigchaindb-driver": "^4.3.0",
+        "cors": "^2.8.5",
         "express": "^4.17.3",
-        "ipfs-http-client": "^56.0.2"
+        "ipfs-http-client": "^56.0.2",
+        "multer": "^1.4.4"
     }
 }
