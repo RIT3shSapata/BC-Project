@@ -1,10 +1,14 @@
 import express, { Application, Request, Response } from 'express';
-import IMulterFile from './Interfaces/MulterFile';
+import IMulterFile from './types/MulterFile';
 import upload from './middlewares/multer';
 import { addFile, run } from './utils/ipfs';
+import router from './routers/router';
 
 const app: Application = express();
 const PORT = 5000;
+
+app.use(express.json());
+app.use(router);
 
 app.get('/isworking', (req: Request, res: Response) => {
     res.send('working');
