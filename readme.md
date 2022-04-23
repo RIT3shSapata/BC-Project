@@ -28,7 +28,10 @@ yarn dev
 ### To start the BigChainDB
 
 ```bash
-docker-compose up -d
+cd bigchaindb
+make run
 ```
+
+> **Note**: Use `make stop` to stop the BigChainDB.
 
 > **Note**: Use `npm run dev` to start the servers if `yarn` is not installed on your device

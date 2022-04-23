@@ -1,5 +1,5 @@
 import { create } from 'ipfs-http-client';
-import IMulterFile from '../Interfaces/MulterFile';
+import IMulterFile from '../types/MulterFile';
 
 const ipfs = create({
     url: 'http://localhost:5001/api/v0',

@@ -1,4 +1,4 @@
-interface IMulterFile {
+type IMulterFile = {
     fieldname: string;
     originalname: string;
     encoding: string;
@@ -7,6 +7,6 @@ interface IMulterFile {
     destination: string;
     filename: string;
     path: string;
-}
+};
 
 export default IMulterFile;
