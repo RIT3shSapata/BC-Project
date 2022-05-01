@@ -1,8 +1,4 @@
-import driver, {
-    Connection,
-    Transaction,
-    Ed25519Keypair,
-} from 'bigchaindb-driver';
+import { Connection, Transaction, Ed25519Keypair } from 'bigchaindb-driver';
 import { personalData } from '../types/DocumentData';
 // const driver = require('bigchaindb-driver');
 
