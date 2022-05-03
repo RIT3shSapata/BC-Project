@@ -9,4 +9,10 @@ type DocumentData = {
     personalData: personalData;
 };
 
-export { DocumentData, personalData };
+type DocumentDataEnc = {
+    documentID: string;
+    documentType: string;
+    personalData: string;
+};
+
+export { DocumentData, personalData, DocumentDataEnc };
