@@ -16,6 +16,7 @@ const signUp = async (req: Request, res: Response) => {
     } catch (err) {
         res.status(500).send(err);
     }
+    // return res.send('some crap');
 };
 
 const signIn = async (req: Request, res: Response) => {
