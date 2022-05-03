@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { DocumentData } from '../types/DocumentData';
-import { write, read, searchMeta } from '../utils/bigChainDB';
+import { read, searchMeta } from '../utils/bigChainDB';
 import {
     encrypt,
     generateKeys,
@@ -9,11 +8,11 @@ import {
     verifySignature,
 } from '../utils/cryptography';
 
-const addData = async (req: Request, res: Response) => {
-    const { personalData, id }: DocumentData = req.body;
-    const tid = await write(personalData, id);
-    res.send(tid);
-};
+// const addData = async (req: Request, res: Response) => {
+//     const { personalData, id }: DocumentData = req.body;
+//     const tid = await write(personalData, id);
+//     res.send(tid);
+// };
 
 const getData = async (req: Request, res: Response) => {
     const { tid } = req.body;
@@ -59,7 +58,7 @@ const verifySign = async (req: Request, res: Response) => {
     res.send(verified);
 };
 export {
-    addData,
+    // addData,
     getData,
     findByMetaData,
     encryptionTest,

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-    addData,
+    // addData,
     decryptionTest,
     encryptionTest,
     findByMetaData,
@@ -12,7 +12,7 @@ import {
 
 const router = Router();
 
-router.post('/addData', addData);
+// router.post('/addData', addData);
 router.post('/getData', getData);
 router.post('/searchByMetaData', findByMetaData);
 router.post('/encryptionTest', encryptionTest);

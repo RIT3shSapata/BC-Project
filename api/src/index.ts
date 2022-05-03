@@ -4,6 +4,7 @@ import upload from './middlewares/multer';
 import { addFile, run } from './utils/ipfs';
 import router from './routers/router';
 import authRouter from './routers/router.auth';
+import docRouter from './routers/router.document';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
@@ -21,6 +22,7 @@ mongoose.connect(MONGO_URL, () => {
 app.use(express.json());
 app.use(router);
 app.use(authRouter);
+app.use(docRouter);
 
 app.get('/isworking', (req: Request, res: Response) => {
     res.send('working');
