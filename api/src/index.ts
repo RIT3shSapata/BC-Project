@@ -22,6 +22,10 @@ app.use(express.json());
 app.use(router);
 app.use(authRouter);
 
+app.get('/', (req: Request, res: Response) => {
+    res.send('Get the fuck outta here');
+});
+
 app.get('/isworking', (req: Request, res: Response) => {
     res.send('working');
 });
