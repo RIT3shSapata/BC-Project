@@ -14,49 +14,31 @@ const Register: NextPage = () => {
     const [publicKey, setPublicKey] = useState('')
 
     // handle form submission
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // check if passwords match
         if (password !== confirmPassword) {
             alert('Passwords do not match')
             return
         }
-        // check if email is valid
-        // if (!email.includes('@')) {
-        //     alert('Email is not valid')
-        //     return
-        // }
-
         // if all fields are valid, send request to server
-        axios.post('http://localhost:5000/signUp', {
-            body: JSON.stringify({
-                email,
-                password,
-                publicKey
+        try{
+            const response = await axios.post('http://localhost:5000/signUp', {
+                "email":email,
+                "password":password,
+                "publicKey":publicKey
             })
-        })
-            .then(res => {
-                console.log(res)
-                return res
-            })
-            // .then(res => {
-            //     if (res.success) {
-            //         alert('Registration successful')
-            //         window.location.href = '/login'
-            //     } else {
-            //         alert(res.message)
-            //     }
-            // })
-
-        // reset fields to empty
+            console.log(response)
+        }catch(err){
+            console.log(err)
+        }
+        
+        
         setEmail('')
         setPassword('')
         setConfirmPassword('')
         setPublicKey('')
-
     }
-
-
 
   return (
     <>

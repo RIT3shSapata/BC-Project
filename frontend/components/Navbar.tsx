@@ -20,7 +20,7 @@ const Navbar = () => {
 				</a>	
 			</div>
 			<div className={styles.navbarButton}>
-				<a href="/view">
+				<a href="/add">
 					<p> Add </p>
 				</a>	
 			</div>

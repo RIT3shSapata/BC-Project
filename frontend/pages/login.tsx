@@ -12,27 +12,20 @@ const Login: NextPage = () => {
     const [password, setPassword] = useState('')
 
     // handle form submission
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // check if passwords match
 
         // if all fields are valid, send request to server
-        axios.post('http://localhost:5000/signIn', {
-            "email":email,
-            "password":password
-        })
-            .then(res => {
-                console.log(res)
-                return res
+        try{
+            const response = await axios.post('http://localhost:5000/signIn', {
+                "email":email,
+                "password":password
             })
-            // .then(res => {
-            //     if (res.success) {
-            //         alert('Registration successful')
-            //         window.location.href = '/'
-            //     } else {
-            //         alert(res.message)
-            //     }
-            // })
+            console.log(response)
+        }catch(err){
+            console.log(err)
+        }
 
         // reset fields to empty
         setEmail('')
