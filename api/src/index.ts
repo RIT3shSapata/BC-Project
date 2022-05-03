@@ -7,6 +7,8 @@ import authRouter from './routers/router.auth';
 import docRouter from './routers/router.document';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
+
 
 dotenv.config();
 
@@ -20,6 +22,7 @@ mongoose.connect(MONGO_URL, () => {
 });
 
 app.use(express.json());
+app.use(cors());
 app.use(router);
 app.use(authRouter);
 app.use(docRouter);
