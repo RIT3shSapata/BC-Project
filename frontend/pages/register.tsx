@@ -31,6 +31,7 @@ const Register: NextPage = () => {
             console.log(response)
         }catch(err){
             console.log(err)
+            return
         }
         
         
@@ -38,6 +39,8 @@ const Register: NextPage = () => {
         setPassword('')
         setConfirmPassword('')
         setPublicKey('')
+
+        window.location.href = '/login'
     }
 
   return (

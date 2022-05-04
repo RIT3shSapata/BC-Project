@@ -4,6 +4,8 @@ import styles from '../styles/Navbar.module.css'
 
 
 const Navbar = () => {
+
+	
   return (
     <>
     <Head>
@@ -14,16 +16,23 @@ const Navbar = () => {
 
     <div className={styles.navbar}>
         <div className={styles.navbar__left}>
-			<div className={styles.navbarButton}>
-				<a href="/view">
-					<p> View </p>
-				</a>	
-			</div>
-			<div className={styles.navbarButton}>
-				<a href="/add">
-					<p> Add </p>
-				</a>	
-			</div>
+			{/* { */}
+				{/* false  */}
+				{/* ? */}
+				{/* <div> */}
+					<div className={styles.navbarButton}>
+					<a href="/view">
+						<p> View </p>
+					</a>
+				</div>
+				<div className={styles.navbarButton}>
+					<a href="/add">
+						<p> Add </p>
+					</a>	
+				</div>
+				{/* </div> */}
+				{/* :<div></div>	 */}
+			{/* } */}
         </div>
         <div className={styles.navbar__logo}>
         	<a href="/">

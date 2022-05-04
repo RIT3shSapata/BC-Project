@@ -22,7 +22,8 @@ const Add: NextPage = () => {
         const formData = new FormData()
         formData.append('file', file)
         try{
-            const response = await axios.post('http://localhost:5000/upload', formData)
+            // TODO Change route for file upload
+            const response = await axios.post('http://localhost:5000/fileUpload', formData)
             console.log(response)
         }
         catch(err){
@@ -30,6 +31,7 @@ const Add: NextPage = () => {
         }
         // if all fields are valid, send request to server
         try{
+            // TODO Change route for information upload
             const response = await axios.post('http://localhost:5000/add', {
                 "document_id":document_id,
                 "document_type":document_type,
@@ -42,6 +44,8 @@ const Add: NextPage = () => {
         catch(err){
             console.log(err)
         }
+
+        
     }
 
   return (
