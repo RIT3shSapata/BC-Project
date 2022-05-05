@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import {
-    addData,
+    // addData,
     decryptionTest,
     encryptionTest,
     findByMetaData,
     generateKeyPair,
     generateSignature,
-    getData,
+    // getData,
     verifySign,
 } from '../controllers/controller';
 
 const router = Router();
 
-router.post('/addData', addData);
-router.post('/getData', getData);
+// router.post('/addData', addData);
+// router.post('/getData', getData);
 router.post('/searchByMetaData', findByMetaData);
 router.post('/encryptionTest', encryptionTest);
 router.post('/decryptionTest', decryptionTest);

@@ -31,15 +31,17 @@ const Register: NextPage = () => {
             console.log(response)
         }catch(err){
             console.log(err)
+            alert("Error With Field!! Try Again")
             return
         }
         
-        
+        // reset fields to empty
         setEmail('')
         setPassword('')
         setConfirmPassword('')
         setPublicKey('')
 
+        //redirect to login page
         window.location.href = '/login'
     }
 

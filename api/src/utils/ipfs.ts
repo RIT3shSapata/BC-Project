@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import { create } from 'ipfs-http-client';
 import IMulterFile from '../types/MulterFile';
 
@@ -13,9 +14,16 @@ const run = async () => {
 
 const addFile = async (file: IMulterFile | undefined) => {
     if (file) {
-        await ipfs.files.write('/' + file.originalname, file.path, {
+        console.log(file);
+        console.log(file.path);
+        const data = Buffer.from(readFileSync(file.path));
+        console.log(data);
+        const added = await ipfs.files.write('/' + file.originalname, data, {
             create: true,
         });
+        console.log(added);
+        //console.log(res)
+        // return added;
     }
     run();
 };

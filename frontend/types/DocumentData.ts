@@ -4,7 +4,8 @@ type personalData = {
     address: string;
 };
 type DocumentData = {
-    id: string;
+    documentID: string;
+    documentType: string;
     personalData: personalData;
 };
 

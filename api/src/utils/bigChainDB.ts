@@ -1,20 +1,19 @@
 import { Connection, Transaction, Ed25519Keypair } from 'bigchaindb-driver';
-import { personalData } from '../types/DocumentData';
-// const driver = require('bigchaindb-driver');
+import { DocumentDataEnc } from '../types/DocumentData';
 
-const write = async (data: personalData, id: string) => {
+const write = async (documentData: DocumentDataEnc) => {
     const API_PATH = 'http://localhost:9984/api/v1/';
     const conn = new Connection(API_PATH);
     const alice = new Ed25519Keypair();
 
     const metadata = {
-        id,
+        id: documentData.documentID,
         date: Date.now(),
-        description: 'asset',
+        DocumentType: documentData.documentType,
     };
 
     const transaction = Transaction.makeCreateTransaction(
-        data,
+        { personalData: documentData.personalData },
         metadata,
         [
             Transaction.makeOutput(

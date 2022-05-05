@@ -15,7 +15,6 @@ const Login: NextPage = () => {
     // handle form submission
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // check if passwords match
 
         // if all fields are valid, send request to server
         try{
@@ -24,33 +23,21 @@ const Login: NextPage = () => {
                 "password":password
             })
             console.log(response)
-            // localStorage.setItem('loggedIn', 'true')
-            // localStorage.setItem('documents', JSON.stringify(response.data.documents))
         }catch(err){
             console.log(err)
             alert("Wrong credentials! Try Again")
             setPassword('')
-
             return
         }
 
-
         // reset fields to empty
         setEmail('')
-        setPassword('')
-
-        // store login state in local storage
-        
+        setPassword('')        
 
         //redirect to home page
-
         window.location.href = '/'
 
-
     }
-
-
-
   return (
     <>
       <Navbar  />
