@@ -1,16 +1,18 @@
 import { Request, Response } from 'express';
 import User from '../models/models.user';
 import { DocumentData, DocumentDataEnc } from '../types/DocumentData';
+import { file, fileConv } from '../types/Files';
 import IMulterFile from '../types/MulterFile';
 // import { addFile } from '../utils/ipfs';
 import { read, searchMeta, write } from '../utils/bigChainDB';
 import { encrypt } from '../utils/cryptography';
-import { addFile } from '../utils/ipfs';
+import { addFile, listFiles, v0tov1 } from '../utils/ipfs';
 
 const addData = async (req: Request, res: Response) => {
     try {
         const { _id } = req.query;
-        const documentData: DocumentData = JSON.parse(req.body.documentData);
+        // const documentData: DocumentData = JSON.parse(req.body.documentData);
+        const documentData: DocumentData = req.body;
         const user = await User.findById(_id);
         if (!user) {
             throw new Error('User not found');
@@ -19,11 +21,6 @@ const addData = async (req: Request, res: Response) => {
             JSON.stringify(documentData.personalData),
             user.publicKey
         );
-        // const documentID_enc = encrypt(documentData.documentID, user.publicKey);
-        // const documentID_sign = createSignature(
-        //     documentData.documentID,
-        //     user.publicKey
-        // );
         const documentData_enc: DocumentDataEnc = {
             documentID: documentData.documentID,
             documentType: documentData.documentType,
@@ -48,8 +45,6 @@ const addData = async (req: Request, res: Response) => {
 
 const getDoc = async (req: Request, res: Response) => {
     try {
-        const file: IMulterFile | undefined = req.file;
-        await addFile(file);
         const { _id } = req.query;
         const user = await User.findById(_id);
         if (!user) {
@@ -59,6 +54,7 @@ const getDoc = async (req: Request, res: Response) => {
         // const documentID_enc = encrypt(documentID, user.publicKey);
         // const documentID_sign = createSignature(documentID, user.publicKey);
         const result = await searchMeta(documentID);
+        console.log(documentID, result);
         const tid = result[0].id;
         const transaction = await read(tid);
         res.send({
@@ -69,4 +65,43 @@ const getDoc = async (req: Request, res: Response) => {
         res.status(500).send(err);
     }
 };
-export { addData, getDoc };
+
+const writeDoc = async (req: Request, res: Response) => {
+    try {
+        const file: IMulterFile | undefined = req.file;
+        if (file) {
+            await addFile(file);
+            res.send({
+                message: 'File added',
+                fileName: file.originalname,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+const findDoc = async (req: Request, res: Response) => {
+    try {
+        const { filename } = req.body;
+        const files: file[] | undefined = await listFiles();
+        if (files) {
+            console.log(files);
+            //loop through cids
+            const file_search: fileConv[] = [];
+            files.forEach((file) => {
+                const cidv0 = file.cid.toString();
+                const cidv1 = v0tov1(cidv0);
+                file_search.push({ ...file, cid: cidv1 });
+            });
+            res.send({
+                result: file_search,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+export { addData, getDoc, writeDoc, findDoc };

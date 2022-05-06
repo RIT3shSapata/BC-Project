@@ -33,18 +33,32 @@ const Add: NextPage = () => {
         };
         const formData = new FormData();
         formData.append('document', file);
-        formData.append('documentData', JSON.stringify(documentData));
         console.log(formData);
         try {
-            //TODO: change the id to dynamic
             const response = await axios.post(
-                'http://localhost:5000/addDoc?_id=626e9a302927d07bb235af07',
+                'http://localhost:5000/writeDoc',
                 formData
             );
-            console.log(response);
+            const { filename } = response.data;
+            const fileData = await axios.post('http://localhost:5000/findDoc', {
+                filename,
+            });
+            console.log(fileData.data);
         } catch (err) {
             console.log(err);
         }
+        // formData.append('documentData', JSON.stringify(documentData));
+        // console.log(formData);
+        // try {
+        //     //TODO: change the id to dynamic
+        //     const response = await axios.post(
+        //         'http://localhost:5000/addDoc?_id=626e9a302927d07bb235af07',
+        //         formData
+        //     );
+        //     console.log(response);
+        // } catch (err) {
+        //     console.log(err);
+        // }
         // // if all fields are valid, send request to server
         // try{
         //     const response = await axios.post('http://localhost:5000/add', {
